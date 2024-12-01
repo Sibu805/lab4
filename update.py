@@ -62,3 +62,6 @@ for idx, (combo, points) in enumerate(valid_combos, 1):
     for item in combo:
         print(f" - {item[1]} ({item[0]}, Size: {item[2]}, Points: {item[3]})")
     print()
+
+if len(valid_combos) == 0: 
+    print(" proof of absence of the combimations") 
