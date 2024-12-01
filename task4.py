@@ -1,10 +1,3 @@
-def inventry(seq):
-    p = []
-    for a in seq:
-        for b in a:
-            p.append(b)
-    return p
-
 items = [
     ('rifle', 'r', 3, 25),
     ('pistol', 'p', 2, 15),
