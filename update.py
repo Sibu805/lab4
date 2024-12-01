@@ -25,37 +25,26 @@ items = [
     ('antidote', 'd', 1, 10)  # противоядие (пункт d)
 ]
 
-# Function to evaluate combinations
-def evaluate_combinations(items, max_cells, initial_points):
-    valid_combinations = []
+def combination(items, cell, initial_points):
+    possible_combinations = []
 
-    all_items_set = set(items)  # All items as a set for exclusion calculation
-
-    # Generate all combinations of items
+    items_set = set(items) 
     for r in range(1, len(items) + 1):
         for combo in combinations(items, r):
-            # Ensure the combo includes the antidote
             if ('antidote', 'd', 1, 10) not in combo:
-                continue  # Skip combinations without the antidote
+                continue  
 
-            # Calculate the total size of included items
-            total_size = sum(item[2] for item in combo)
-
-            # Calculate survival points: Add included, subtract excluded
-            included_points = sum(item[3] for item in combo)
-            excluded_points = sum(item[3] for item in (all_items_set - set(combo)))
-            net_points = initial_points + included_points - excluded_points
-
-            # Check if the total size does not exceed available cells and survival points are positive
-            if total_size <= max_cells and net_points > 0:
-                valid_combinations.append((combo, net_points))
+            size = sum(item[2] for item in combo)
+            added_points = sum(item[3] for item in combo)
+            subtracted_points = sum(item[3] for item in (items_set - set(combo)))
+            result_points = initial_points + added_points - subtracted_points
+            if size <= cell and result_points > 0:
+                possible_combinations.append((combo, result_points))
     
-    return valid_combinations
+    return possible_combinations
 
-# Evaluate all valid combinations
-valid_combos = evaluate_combinations(items, max_cells=7, initial_points=20)
+valid_combos = combination(items, cell=7, initial_points=20)
 
-# Display results
 print(f"Total Valid Combinations: {len(valid_combos)}\n")
 for idx, (combo, points) in enumerate(valid_combos, 1):
     print(f"Option {idx}: Survival Points = {points}")
@@ -64,4 +53,4 @@ for idx, (combo, points) in enumerate(valid_combos, 1):
     print()
 
 if len(valid_combos) == 0: 
-    print(" proof of absence of the combimations") 
+    print("Proof of absence of the combimations") 
