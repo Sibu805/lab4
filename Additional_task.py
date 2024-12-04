@@ -53,4 +53,4 @@ for idx, (combo, points) in enumerate(valid_combos, 1):
     print()
 
 if len(valid_combos) == 0: 
-    print("Proof of absence of the combimations") 
+    print("Ноль является доказательством отсутствия комбинаций") 
