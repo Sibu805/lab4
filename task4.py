@@ -38,6 +38,12 @@ for i in range(2):
         if i * 4 + j < len(inventry_order):
             rukzak[i][j] = inventry_order[i * 4 + j]
 
+formatted_rukzak = []
 for row in rukzak:
+    formatted_row = ",".join([f"[{item}]" if item else "[]" for item in row])
+    formatted_rukzak.append(formatted_row)
+
+for row in formatted_rukzak:
     print(row)
-print(f"Final Survival Points: {ochki}")
+    
+print(f"Итоговые очки выживания: {ochki}")
